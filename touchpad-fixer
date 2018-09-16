@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# my touchpad looses gestures (two finger scroll, two finger click) after remuse from suspend
+# this srcript remounts the "psmouse" kernel module to fix this issue
+
+# place it in /lib/systemd/system-sleep/
+# make it executable by chmod +x touchpad-fixer 
+
+case $1 in
+  post)
+    modprobe -r psmouse
+    modprobe psmouse
+    ;;
+esac
